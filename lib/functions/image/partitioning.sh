@@ -33,10 +33,10 @@ function prepare_partitions() {
 	# create bigger number for desktop builds
 	if [[ $BUILD_DESKTOP == yes ]]; then local node_number=4096; else local node_number=1024; fi
 	if [[ $HOSTRELEASE =~ buster|bullseye|focal|jammy|sid ]]; then
-		mkopts[ext4]="-q -m 2 -O ^64bit,^metadata_csum -N $((128 * node_number))"
+		mkopts[ext4]="-m 2 -O ^64bit,^metadata_csum -N $((128 * node_number))"
 	fi
 	# mkopts[fat] is empty
-	mkopts[ext2]='-q'
+	mkopts[ext2]=''
 	# mkopts[f2fs] is empty
 	mkopts[btrfs]='-m dup'
 	# mkopts[xfs] is empty
